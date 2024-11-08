@@ -1,0 +1,27 @@
+.card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1; /* Ensures a 1:1 aspect ratio, making the card a square */
+    width: 80%; /* Card will take full width of its grid/container */
+    /* border: 1px solid #ccc; */
+    border-radius: 20px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color:black;
+}
+
+.card:hover{
+    background-color: #0BDA51;
+    color: white;
+}
+
+.text {
+    
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+}

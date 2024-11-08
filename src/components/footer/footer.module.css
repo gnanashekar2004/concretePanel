@@ -1,0 +1,54 @@
+.footer{
+    background-color: #000000;
+    color:white;
+    text-align:center;
+    width: 100%;
+    bottom: 0;
+    font-family: Garamond,serif;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.institute{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 2fr 0.5fr;
+    padding: 3vh 5vw;
+}
+
+.dept{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    font-size: 2.5em;
+    text-wrap: wrap;
+    width: 20vw;
+}
+
+.logo{
+    padding-bottom: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    grid-row: span 2;
+}
+
+.kgp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:end;
+    padding: 0vh 1.5vw;
+}
+
+.name,.rollno,.mail{
+    padding: 0.25vh 0;
+    font-size: 1.25em;
+}

@@ -1,0 +1,55 @@
+.navbar{
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    gap: 50vw;
+    background-color: #000000;
+    font-family: Garamond,serif;
+    font-size: 1.5em;
+    color:white;
+    height: auto;
+    width: 100%;
+    z-index: 10;
+}
+
+.logoContainer{
+    font-size:1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: auto;
+}
+
+.logo{
+    fill: white;
+    width: 4vw;
+    padding: 1vh 0vw;
+}
+
+.links{
+    width: 40%;
+    display: flex;
+}
+
+.links a {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:white;
+    text-decoration: none;
+    transition: all 0.1s;
+}
+
+.links a:hover{
+    background-color: #ffffff;
+    color:#000000;
+}
+
+.active {
+    background: linear-gradient(to bottom, black 80%, #0BDA51 110%);
+    color: white; /* Optional: change text color on active */
+}
+

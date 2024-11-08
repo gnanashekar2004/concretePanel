@@ -1,0 +1,14 @@
+.container{
+   background-color: #111;
+   color:white;
+}
+
+.gridContainer{
+    padding: 8vh 0;
+}
+
+.grids{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

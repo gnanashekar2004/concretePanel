@@ -1,0 +1,99 @@
+.container{
+    background-color: #222;
+    color:white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 4vh 3vw;
+    width: 100vw;
+}
+
+.heading{
+    font-size: 3em;
+    font-weight: 800;
+}
+
+.heading2{
+    color: #f9f9f9;
+    padding-top: 5vh;
+    font-size: 2em;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 700;
+}
+
+.tableContainer{
+    width:100%;
+    padding-top:1vh;
+}
+
+.table{
+    width: 90vw;
+    padding:0;
+    margin:0;
+}
+
+.tableHeader,.mainHeader,.mainHeaderCol,.subHeader,.subHeaderCol{
+    padding:0;
+    margin:0;
+}
+
+.tableBody,.tableRow,.tableRowValue,.inputs{
+    padding:0;
+    margin:0;
+}
+
+.mainHeaderCol{
+    width: 30vw;
+    height: 7vh;
+    background-color: #22fb84;
+    color:black;
+    
+}
+
+.subHeaderCol{
+    width: 10vw;
+    height: 6vh;
+    background-color: #0BDA51;
+    color: black;
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+
+.inputs{
+    width: 10vw;
+    border:none;
+    height: 5vh;
+    color: #C5C6D6;
+    font-size: 1em;
+    font-weight: 600;
+    /* padding-left: 1%; */
+}
+
+.evenClass{
+    background-color: #222;
+}
+
+.oddClass{
+    background-color: #333;
+}
+
+.buttonContainer{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    padding-top:2vh;
+}
+
+.button{
+    background-color: rgb(0, 98, 255);
+    color:#f9f9f9;
+    width: 10vw;
+    height:5vh;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.25em;
+    border: none;
+    border-radius: 5px;
+}
+

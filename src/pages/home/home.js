@@ -16,13 +16,13 @@ const Home= () =>{
             <div>
                 <Grid className={styles.gridContainer} container spacing={2}>
                     <Grid className={styles.grids} size={{xs:12, md:4}}>
-                        <Card1 onClick={()=>navigate('/page1')} label="Page 1"/>
+                        <Card1 onClick={()=>navigate('/page1')} label="SSCP"/>
                     </Grid>
                     <Grid className={styles.grids} size={{xs:12, md:4}}>
-                        <Card2 onClick={()=>navigate('/page2')} label="Page 2"/>
+                        <Card2 onClick={()=>navigate('/page2')} label="TWT"/>
                     </Grid>
                     <Grid className={styles.grids} size={{xs:12, md:4}}>
-                        <Card1 onClick={()=>navigate('/page3')} label="Page 3"/>
+                        <Card1 onClick={()=>navigate('/page3')} label="JPCP"/>
                     </Grid>
                 </Grid>
             </div>

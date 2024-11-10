@@ -15,9 +15,9 @@ const Navbar = () => {
             </div>
             <div className={styles.links}>
                 <NavLink to = "/" className={({isActive}) => isActive ? styles.active : undefined}>Home</NavLink>
-                <NavLink to = "/page1" className={({isActive}) => isActive ? styles.active : undefined}>Page 1</NavLink>
-                <NavLink to = "/page2" className={({isActive}) => isActive ? styles.active : undefined}>Page 2</NavLink>
-                <NavLink to = "/page3" className={({isActive}) => isActive ? styles.active : undefined}>Page 3</NavLink>
+                <NavLink to = "/page1" className={({isActive}) => isActive ? styles.active : undefined}>SSCP</NavLink>
+                <NavLink to = "/page2" className={({isActive}) => isActive ? styles.active : undefined}>TWT</NavLink>
+                <NavLink to = "/page3" className={({isActive}) => isActive ? styles.active : undefined}>JPCP</NavLink>
             </div>
         </nav>
     );

@@ -16,7 +16,7 @@ const Footer=()=>{
             <div className={styles.details}>
                 <div className={styles.rollno}>21CE10022</div>
                 <div className={styles.name}>Enjeti Sudhikar Reddy</div>
-                <div className={styles.mail}>example@gmail.com</div>
+                <div className={styles.mail}>sudhikarreddy24@gmail.com</div>
             </div>
         </footer>
     );

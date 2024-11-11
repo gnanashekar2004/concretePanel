@@ -7,10 +7,14 @@ const Section4 = () =>{
   return(
     <div className={styles.container}>
       <div className={styles.heading}>
-        Section 4
+        Pavement Structural Details
       </div>
       <div>
         <Grid className={styles.gridContainer} container spacing={2}>
+          <Grid className={styles.grids} size={{xs:12, md:6}}>
+            <p className={styles.inputLabel}>Modulus of subgrade reaction of subgrade (MPa/m):</p>
+            <input className={styles.inputs}/>
+          </Grid>
           <Grid className={styles.grids} size={{xs:12, md:6}}>
             <p className={styles.inputLabel}>Thickness of Granular Subbase (mm):</p>
             <input className={styles.inputs}/>

@@ -1,5 +1,5 @@
 .container{
-    background-color: #333;
+    background-color: #222;
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 4vh 3vw;
@@ -18,7 +18,7 @@
 .inputs{
     width: 90%;
     height: 5vh;
-    background-color: #444;
+    background-color: #333;
     border-radius: 5px;
     border: grey solid 0.5px;
     color: #C5C6D6;
@@ -30,7 +30,7 @@
 .dropdown{
     width: 92%;
     height: 5.5vh;
-    background-color: #444;
+    background-color: #333;
     border-radius: 5px;
     border: grey solid 0.5px;
     color: #C5C6D6;

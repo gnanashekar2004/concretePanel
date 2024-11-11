@@ -1,5 +1,5 @@
 .container{
-    background-color: #222;
+    background-color: #333;
     color:white;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 4vh 3vw;
@@ -9,6 +9,7 @@
 .heading{
     font-size: 3em;
     font-weight: 800;
+    padding-bottom: 2vh;
 }
 
 .heading2{
@@ -70,11 +71,11 @@
 }
 
 .evenClass{
-    background-color: #222;
+    background-color: #333;
 }
 
 .oddClass{
-    background-color: #333;
+    background-color: #444;
 }
 
 .buttonContainer{

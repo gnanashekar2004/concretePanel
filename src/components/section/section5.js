@@ -29,9 +29,6 @@ const Section5 = () => {
   return (
     <div className={styles.container}>
         <div className={styles.heading}>
-            Section 5
-        </div>
-        <div className={styles.heading2}>
             Axle Load Spectrum Data
         </div>
         <div className={styles.tableContainer}>

@@ -7,7 +7,7 @@ const Section3 = () =>{
   return(
     <div className={styles.container}>
       <div className={styles.heading}>
-        Section 3
+        Pavement Structural Details
       </div>
       <div>
         <Grid className={styles.gridContainer} container spacing={2}>
@@ -27,10 +27,7 @@ const Section3 = () =>{
             <p className={styles.inputLabel}>Proportion of Tridem Axles (K4):</p>
             <input className={styles.inputs}/>
           </Grid>
-          <Grid className={styles.grids} size={{xs:12, md:6}}>
-            <p className={styles.inputLabel}>Modulus of subgrade reaction of subgrade (MPa/m):</p>
-            <input className={styles.inputs}/>
-          </Grid>
+          
         </Grid>
       </div>
     </div>

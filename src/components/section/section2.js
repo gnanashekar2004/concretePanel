@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid2';
 import styles from './section2.module.css';
 
 const formFields = [
+  { label: 'Design Period (years):'},
   { label: 'Total Two-way Commercial Traffic (cvpd) in the year of completion of construction:' },
   { label: 'Av. Annual rate of growth of Commercial traffic (expressed as decimal):' },
   { label: 'Average No of axles per Commercial vehicle (B):' },
@@ -13,14 +14,18 @@ const formFields = [
   { label: 'Wheel wander factor for Longitudinal cracking with positive temperature differential (DLP):' },
   { label: 'Wheel wander factor for Longitudinal cracking with negative temperature differential (DLN):' },
   { label: 'Factor for selection of traffic for BUC analysis (for six-hour period during day) (F):' },
-  { label: 'Factor for selection of traffic for TDC analysis (for six-hour period during day) (G):' }
+  { label: 'Factor for selection of traffic for TDC analysis (for six-hour period during day) (G):' },
+  { label: 'Proportion of Front single (steering) Axles (K1):' },
+  { label: 'Proportion of Rear single Axles (K2):' },
+  { label: 'Proportion of tandem Axles (K3):' },
+  { label: 'Proportion of Tridem Axles (K4):' },
 ];
 
 const Section2 = () =>{
   return(
     <div className={styles.container}>
       <div className={styles.heading}>
-        Section 2
+        Design Traffic Estimation
       </div>
       <div>
         <Grid container spacing={2} className={styles.gridContainer}>

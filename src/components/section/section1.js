@@ -7,7 +7,7 @@ const Section1 = () =>{
   return(
     <div className={styles.container}>
       <div className={styles.heading}>
-        Section 1
+        Type of pavement considered
       </div>
       <div>
         <Grid className={styles.gridContainer} container spacing={2}>
@@ -49,10 +49,6 @@ const Section1 = () =>{
               <option value="No">NO</option>
               <option value="Yes">YES</option>
             </select>
-          </Grid>
-          <Grid className={styles.grids} size={{xs:12, md:6}}>
-            <p className={styles.inputLabel}>Design Period (years):</p>
-            <input className={styles.inputs}/>
           </Grid>
         </Grid>
       </div>

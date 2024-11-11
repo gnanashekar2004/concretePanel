@@ -14,7 +14,6 @@ const Page1= () => {
             <form className={styles.form}>
                 <Section1/>
                 <Section2/>
-                <Section3/>
                 <Section4/>
                 <Section5/>
                 <div className={styles.submit}>

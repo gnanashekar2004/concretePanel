@@ -25,7 +25,13 @@ const Section1 = () =>{
           </Grid>
           <Grid className={styles.grids} size={{xs:12, md:6}}>
             <p className={styles.inputLabel}>Slab Size:</p>
-            <input className={styles.inputs}/>
+            <select className={styles.dropdown} name="SlabSize">
+              <option value="1">1 x 1</option>
+              <option value="1.25">1.25 x 1.25</option>
+              <option value="1.5">1.5 x 1.5</option>
+              <option value="1.75">1.75 x 1.75</option>
+              <option value="2">2 x 2</option>
+            </select>
           </Grid>
           <Grid className={styles.grids} size={{xs:12, md:6}}>
             <p className={styles.inputLabel}>Lane Width (m):</p>

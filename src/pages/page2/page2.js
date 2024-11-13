@@ -8,12 +8,14 @@ import Section8 from '../../components/section/section8';
 const Page2 = () => {
     return(
         <div className={styles.container}>
-            <Section6/>
-            <Section7/>
-            <Section8/>
-            <div className={styles.submit}>
-                <button>SUBMIT</button>
-            </div>
+            <form className={styles.form}>
+                <Section6/>
+                <Section7/>
+                <Section8/>
+                <div className={styles.submit}>
+                    <button>SUBMIT</button>
+                </div>
+            </form>
         </div>
     );
 };

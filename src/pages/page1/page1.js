@@ -4,7 +4,7 @@ import styles from './page1.module.css';
 
 import Section1 from '../../components/section/section1';
 import Section2 from '../../components/section/section2';
-import Section3 from '../../components/section/section3';
+// import Section3 from '../../components/section/section3';
 import Section4 from '../../components/section/section4';
 import Section5 from '../../components/section/section5';
 

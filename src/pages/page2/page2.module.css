@@ -1,4 +1,26 @@
 .container{
-    padding: 20px;
-    text-align: center;
+    padding-top: 10vh;
+    /* text-align: center; */
+}
+
+.submit{
+    background-color: #333;
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.submit button{
+    color: #f9f9f9;
+    background-color: #009c34;
+    border:none;
+    border-radius: 10px;
+    height: 5vh;
+    width: 25vw;
+    font-size: 1.5em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+    cursor: pointer;
 }

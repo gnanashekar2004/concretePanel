@@ -1,20 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './section8.module.css';
 
-const Section8 = ({signal}) => {
+const Section8 = ({ signal, onSubmit, results }) => {
   // Initial state for table rows with 5 rows of sub-columns
   const initialRows = Array.from({ length: 5 }, () => ({
-    col1: '', col2: '', col3: '',
-    col4: '', col5: '', col6: '',
-    col7: '', col8: '', col9: ''
+    singleLG: '', singleMLG: '', singleFreq: '',
+    tandemLG: '', tandemMLG: '', tandemFreq: '',
+    tridemLG: '', tridemMLG: '', tridemFreq: ''
   }));
   
   const [rows, setRows] = useState(initialRows);
 
   // Handle adding a new row
   const handleAddRow = () => {
-    const newRow = { col1: '', col2: '', col3: '', col4: '', col5: '', col6: '', col7: '', col8: '', col9: '' };
+    const newRow = { singleLG: '', singleMLG: '', singleFreq: '', tandemLG: '', tandemMLG: '', tandemFreq: '', tridemLG: '', tridemMLG: '', tridemFreq: '' };
     setRows([...rows, newRow]);
   };
 
@@ -25,6 +25,17 @@ const Section8 = ({signal}) => {
     );
     setRows(updatedRows);
   };
+
+  useEffect(()=>{
+    if(signal){
+        const nonNullRows = rows.filter(row => 
+            Object.values(row).some(value => value.trim() !== '')
+        );
+        onSubmit(nonNullRows);
+    }
+  },[signal,rows]);
+
+  console.log(results);
 
   return (
     <div className={styles.container}>
@@ -57,72 +68,72 @@ const Section8 = ({signal}) => {
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col1}
-                        onChange={(e) => handleChange(index, 'col1', e.target.value)}
+                        value={row.singleLG}
+                        onChange={(e) => handleChange(index, 'singleLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col2}
-                        onChange={(e) => handleChange(index, 'col2', e.target.value)}
+                        value={row.singleMLG}
+                        onChange={(e) => handleChange(index, 'singleMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col3}
-                        onChange={(e) => handleChange(index, 'col3', e.target.value)}
+                        value={row.singleFreq}
+                        onChange={(e) => handleChange(index, 'singleFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col4}
-                        onChange={(e) => handleChange(index, 'col4', e.target.value)}
+                        value={row.tandemLG}
+                        onChange={(e) => handleChange(index, 'tandemLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col5}
-                        onChange={(e) => handleChange(index, 'col5', e.target.value)}
+                        value={row.tandemMLG}
+                        onChange={(e) => handleChange(index, 'tandemMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col6}
-                        onChange={(e) => handleChange(index, 'col6', e.target.value)}
+                        value={row.tandemFreq}
+                        onChange={(e) => handleChange(index, 'tandemFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col7}
-                        onChange={(e) => handleChange(index, 'col7', e.target.value)}
+                        value={row.tridemLG}
+                        onChange={(e) => handleChange(index, 'tridemLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col8}
-                        onChange={(e) => handleChange(index, 'col8', e.target.value)}
+                        value={row.tridemMLG}
+                        onChange={(e) => handleChange(index, 'tridemMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col9}
-                        onChange={(e) => handleChange(index, 'col9', e.target.value)}
+                        value={row.tridemFreq}
+                        onChange={(e) => handleChange(index, 'tridemFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
@@ -143,14 +154,14 @@ const Section8 = ({signal}) => {
                 <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
                 <thead className={styles.tableHeader}>
                 <tr className={styles.mainHeader}>
-                    <th colSpan="2" className={styles.mainHeaderCol2}>Single Axle Loads</th>
-                    <th colSpan="2" className={styles.mainHeaderCol2}>Tandem Axle Loads</th>
+                    <th colSpan="2" className={styles.mainHeadersingleMLG}>Single Axle Loads</th>
+                    <th colSpan="2" className={styles.mainHeadersingleMLG}>Tandem Axle Loads</th>
                 </tr>
                 <tr className={styles.subHeader}>
-                    <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
-                    <th className={styles.subHeaderCol2}>Expected Repetitions</th>
-                    <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
-                    <th className={styles.subHeaderCol2}>Expected Repetitions</th>
+                    <th className={styles.subHeadersingleMLG}>Axle Loads (Tons)</th>
+                    <th className={styles.subHeadersingleMLG}>Expected Repetitions</th>
+                    <th className={styles.subHeadersingleMLG}>Axle Loads (Tons)</th>
+                    <th className={styles.subHeadersingleMLG}>Expected Repetitions</th>
                 </tr>
                 </thead>
                 <tbody className={styles.tableBody}>
@@ -202,12 +213,12 @@ const Section8 = ({signal}) => {
                 <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
                 <thead className={styles.tableHeader}>
                 <tr className={styles.mainHeader}>
-                    <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
-                    <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
-                    <th className={styles.mainHeaderCol2}>Stress Ratio</th>
-                    <th className={styles.mainHeaderCol2}>Expected Repetations</th>
-                    <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
-                    <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
+                    <th className={styles.mainHeadersingleMLG}>Axle Loads (Tons)</th>
+                    <th className={styles.mainHeadersingleMLG}>Load Stress (kgcm<sup>-2</sup>)</th>
+                    <th className={styles.mainHeadersingleMLG}>Stress Ratio</th>
+                    <th className={styles.mainHeadersingleMLG}>Expected Repetations</th>
+                    <th className={styles.mainHeadersingleMLG}>Fatigue Life (N)</th>
+                    <th className={styles.mainHeadersingleMLG}>Fatigue Life Consumed</th>
                 </tr>
                 </thead>
                 <tbody className={styles.tableBody}>
@@ -263,12 +274,12 @@ const Section8 = ({signal}) => {
                 <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
                 <thead className={styles.tableHeader}>
                 <tr className={styles.mainHeader}>
-                    <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
-                    <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
-                    <th className={styles.mainHeaderCol2}>Stress Ratio</th>
-                    <th className={styles.mainHeaderCol2}>Expected Repetations</th>
-                    <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
-                    <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
+                    <th className={styles.mainHeadersingleMLG}>Axle Loads (Tons)</th>
+                    <th className={styles.mainHeadersingleMLG}>Load Stress (kgcm<sup>-2</sup>)</th>
+                    <th className={styles.mainHeadersingleMLG}>Stress Ratio</th>
+                    <th className={styles.mainHeadersingleMLG}>Expected Repetations</th>
+                    <th className={styles.mainHeadersingleMLG}>Fatigue Life (N)</th>
+                    <th className={styles.mainHeadersingleMLG}>Fatigue Life Consumed</th>
                 </tr>
                 </thead>
                 <tbody className={styles.tableBody}>

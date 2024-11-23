@@ -9,11 +9,12 @@ import SafeBox from '../../components/safeBox/safeBox';
 const Page2 = () => {
     // State to manage SafeBox visibility and status
     const [safeStatus, setSafeStatus] = useState(null);
+    const [signal, setSignal] = useState(false);
 
     // Function to handle the submit click
     const handleSubmit = (e) => {
     e.preventDefault(); // Prevent form submission from reloading the page
-
+    setSignal(true);
     // Generate a random 0 or 1
     const randomStatus = Math.floor(Math.random() * 2);
     
@@ -24,9 +25,9 @@ const Page2 = () => {
     return(
         <div className={styles.container}>
             <form className={styles.form} onSubmit={handleSubmit}>
-                <Section6/>
-                <Section7/>
-                <Section8/>
+                <Section6 signal={signal}/>
+                <Section7 signal={signal}/>
+                <Section8 signal={signal}/>
                 <div className={styles.submit}>
                     <button>SUBMIT</button>
                 </div>

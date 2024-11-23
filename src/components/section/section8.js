@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './section8.module.css';
 
-const Section8 = () => {
+const Section8 = ({signal}) => {
   // Initial state for table rows with 5 rows of sub-columns
   const initialRows = Array.from({ length: 5 }, () => ({
     col1: '', col2: '', col3: '',
@@ -132,6 +132,188 @@ const Section8 = () => {
             </table>
             <div className={styles.buttonContainer}>
             <button type="button" onClick={handleAddRow} className={styles.button}>Add Row</button>
+            </div>
+        </div>
+
+        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+            <div className={styles.heading}>
+                Expected Repetations
+            </div>
+            <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                <thead className={styles.tableHeader}>
+                <tr className={styles.mainHeader}>
+                    <th colSpan="2" className={styles.mainHeaderCol2}>Single Axle Loads</th>
+                    <th colSpan="2" className={styles.mainHeaderCol2}>Tandem Axle Loads</th>
+                </tr>
+                <tr className={styles.subHeader}>
+                    <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
+                    <th className={styles.subHeaderCol2}>Expected Repetitions</th>
+                    <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
+                    <th className={styles.subHeaderCol2}>Expected Repetitions</th>
+                </tr>
+                </thead>
+                <tbody className={styles.tableBody}>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+            <div className={styles.heading}>
+                Analysis of Fatigue Life for Single Axle Load
+            </div>
+            <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                <thead className={styles.tableHeader}>
+                <tr className={styles.mainHeader}>
+                    <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
+                    <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
+                    <th className={styles.mainHeaderCol2}>Stress Ratio</th>
+                    <th className={styles.mainHeaderCol2}>Expected Repetations</th>
+                    <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
+                    <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
+                </tr>
+                </thead>
+                <tbody className={styles.tableBody}>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+            <div className={styles.heading}>
+                Analysis of Fatigue Life for Tandem Axle Load
+            </div>
+            <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                <thead className={styles.tableHeader}>
+                <tr className={styles.mainHeader}>
+                    <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
+                    <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
+                    <th className={styles.mainHeaderCol2}>Stress Ratio</th>
+                    <th className={styles.mainHeaderCol2}>Expected Repetations</th>
+                    <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
+                    <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
+                </tr>
+                </thead>
+                <tbody className={styles.tableBody}>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                    <tr className={styles.outputTableRow}>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                        <td className={styles.outputTableRowValue}></td>
+                    </tr>
+                </tbody>
+                </table>
             </div>
         </div>
     </div>

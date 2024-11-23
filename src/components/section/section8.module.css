@@ -2,15 +2,13 @@
     background-color: #222;
     color:white;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    padding: 4vh 3vw;
-    width: 100vw;
+    padding: 4vh 0vw;
 }
 
 .heading{
     font-size: 2em;
     font-weight: 800;
     padding-bottom: 2vh;
-
     text-align: center;
 }
 
@@ -24,8 +22,8 @@
 }
 
 .tableContainer{
-    width:100%;
     padding-top:1vh;
+    padding-left: 3vw;
 }
 
 .table{
@@ -42,6 +40,23 @@
 .tableBody,.tableRow,.tableRowValue,.inputs{
     padding:0;
     margin:0;
+}
+
+.outputTableRow{
+    height:5vh;
+}
+
+.outputTableRowValue{
+    text-align: center;
+    color: #C5C6D6;
+}
+
+.mainHeaderCol2{
+    background-color:  rgb(50, 128, 254);
+}
+
+.subHeaderCol2{
+    background-color:  rgb(0, 98, 255);
 }
 
 .mainHeaderCol{
@@ -99,5 +114,13 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.outputTables{
+    margin-top:5vh;
+}
+
+.hidden {
+    display: none;
 }
 

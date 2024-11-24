@@ -63,9 +63,9 @@ const Page2 = () => {
         if(SR<0.45){
             return Infinity;
         }else if(SR<0.55){
-            return Math.pow((4.2577 / (SR-0.4325)),3.268);
+            return Math.pow((4.2577 / (SR-0.4325)),3.268).toFixed(4);
         }else{
-            return Math.pow(10,(0.9718-SR)/0.0828);
+            return Math.pow(10,(0.9718-SR)/0.0828).toFixed(4);
         }
     };
 
@@ -74,23 +74,23 @@ const Page2 = () => {
             return 0;
         }
 
-        return parseFloat(ER)/parseFloat(FL);
+        return (parseFloat(ER)/parseFloat(FL)).toFixed(4);
     }
 
     const handleSection8Submit = (inputs) => {
         setSection8Inputs(inputs);
-        console.log("Design Traffic:",section6Results.designTraffic);
+        // console.log("Design Traffic:",section6Results.designTraffic);
         const ER = inputs.map(row => ({
-            singleAL: parseFloat(row.singleMLG),
-            singleER: (parseFloat(row.singleFreq)/100)*parseFloat(section6Results.designTraffic)*0.15,
-            tandemAL: parseFloat(row.tandemMLG),
-            tandemER: (parseFloat(row.tandemFreq)/100)*parseFloat(section6Results.designTraffic)*0.15
+            singleAL: parseFloat(row.singleMLG).toFixed(4),
+            singleER: ((parseFloat(row.singleFreq)/100)*parseFloat(section6Results.designTraffic)*0.15).toFixed(4),
+            tandemAL: parseFloat(row.tandemMLG).toFixed(4),
+            tandemER: ((parseFloat(row.tandemFreq)/100)*parseFloat(section6Results.designTraffic)*0.15).toFixed(4)
         }));
         const SAL = inputs.map(row => {
-            const AL = parseFloat(row.singleMLG);
-            const LS = (AL/8) * section7Results.cornerTensileStress8T;
-            const SR = LS/section7Inputs.modulusOfRupture;
-            const ER = (parseFloat(row.singleFreq)/100)*parseFloat(section6Results.designTraffic)*0.15;
+            const AL = parseFloat(row.singleMLG).toFixed(4);
+            const LS = ((AL/8) * section7Results.cornerTensileStress8T).toFixed(4);
+            const SR = (LS/section7Inputs.modulusOfRupture).toFixed(4);
+            const ER = ((parseFloat(row.singleFreq)/100)*parseFloat(section6Results.designTraffic)*0.15).toFixed(4);
             const FL = calculateFL(parseFloat(SR));
 
             return{
@@ -103,10 +103,10 @@ const Page2 = () => {
             }
         });
         const TAL = inputs.map(row => {
-            const AL = parseFloat(row.tandemMLG);
-            const LS = (AL/8) * section7Results.cornerTensileStress16T;
-            const SR = LS/section7Inputs.modulusOfRupture;
-            const ER = (parseFloat(row.tandemFreq)/100)*parseFloat(section6Results.designTraffic)*0.15;
+            const AL = parseFloat(row.tandemMLG).toFixed(4);
+            const LS = ((AL/8) * section7Results.cornerTensileStress16T).toFixed(4);
+            const SR = (LS/section7Inputs.modulusOfRupture).toFixed(4);
+            const ER = ((parseFloat(row.tandemFreq)/100)*parseFloat(section6Results.designTraffic)*0.15).toFixed(4);
             const FL = calculateFL(parseFloat(SR));
 
             return{
@@ -124,14 +124,28 @@ const Page2 = () => {
             SAL,
             TAL
         });
-    };
 
+        const MOR = parseFloat(section7Inputs.modulusOfRupture);
+        const CTS = parseFloat(section7Results.curlingTensileStress);
+        const SALmaxLS = Math.max(...SAL.map(row => parseFloat(row.LS)));
+        const TALmaxLS = Math.max(...TAL.map(row => parseFloat(row.LS)));
+        const totalFlexuralStress = CTS + Math.max(SALmaxLS,TALmaxLS);
+
+        const SALsumFLC = SAL.reduce((sum, row) => sum + parseFloat(row.FLC), 0);
+        const TALsumFLC = TAL.reduce((sum, row) => sum + parseFloat(row.FLC), 0);
+        const cumulativeSum = SALsumFLC + TALsumFLC;
+
+        const isSafeFlexuralStress = totalFlexuralStress < MOR;
+        const isSafeCumulativeSum = cumulativeSum < 1;
+
+        const isSafe = isSafeFlexuralStress && isSafeCumulativeSum;
+
+        setSafeStatus(isSafe ? 'Safe' : 'Unsafe');
+    };
+ 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSignal(true);
-
-        const randomStatus = Math.floor(Math.random() * 2);
-        setSafeStatus(randomStatus === 1 ? 'Safe' : 'Unsafe');
     };
 
     useEffect(() => {

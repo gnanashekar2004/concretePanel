@@ -29,13 +29,13 @@ const Section8 = ({ signal, onSubmit, results }) => {
   useEffect(()=>{
     if(signal){
         const nonNullRows = rows.filter(row => 
-            Object.values(row).some(value => value.trim() !== '')
+            Object.values(row).every(value => value !== null && value.trim() !== '')
         );
         onSubmit(nonNullRows);
     }
   },[signal,rows]);
 
-  console.log(results);
+
 
   return (
     <div className={styles.container}>
@@ -146,187 +146,111 @@ const Section8 = ({ signal, onSubmit, results }) => {
             </div>
         </div>
 
-        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
-            <div className={styles.heading}>
-                Expected Repetations
+        {results && (
+            <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+                <div className={styles.heading}>
+                    Expected Repetations
+                </div>
+                <div className={styles.tableContainer}>
+                    <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th colSpan="2" className={styles.mainHeaderCol2}>Single Axle Loads</th>
+                        <th colSpan="2" className={styles.mainHeaderCol2}>Tandem Axle Loads</th>
+                    </tr>
+                    <tr className={styles.subHeader}>
+                        <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetitions</th>
+                        <th className={styles.subHeaderCol2}>Axle Loads (Tons)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetitions</th>
+                    </tr>
+                    </thead>
+                    <tbody className={styles.tableBody}>
+                        {results['ER'].map((row,rowIndex) => (
+                            <tr className={styles.outputTableRow}>
+                                <td className={styles.outputTableRowValue}>{row.singleAL}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleER}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemAL}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemER}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    </table>
+                </div>
             </div>
-            <div className={styles.tableContainer}>
-                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
-                <thead className={styles.tableHeader}>
-                <tr className={styles.mainHeader}>
-                    <th colSpan="2" className={styles.mainHeadersingleMLG}>Single Axle Loads</th>
-                    <th colSpan="2" className={styles.mainHeadersingleMLG}>Tandem Axle Loads</th>
-                </tr>
-                <tr className={styles.subHeader}>
-                    <th className={styles.subHeadersingleMLG}>Axle Loads (Tons)</th>
-                    <th className={styles.subHeadersingleMLG}>Expected Repetitions</th>
-                    <th className={styles.subHeadersingleMLG}>Axle Loads (Tons)</th>
-                    <th className={styles.subHeadersingleMLG}>Expected Repetitions</th>
-                </tr>
-                </thead>
-                <tbody className={styles.tableBody}>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
+        )}
+
+        {results && (
+            <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+                <div className={styles.heading}>
+                    Analysis of Fatigue Life for Tandem Axle Load
+                </div>
+                <div className={styles.tableContainer}>
+                    <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
+                        <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
+                        <th className={styles.mainHeaderCol2}>Stress Ratio</th>
+                        <th className={styles.mainHeaderCol2}>Expected Repetations</th>
+                        <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
+                        <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
                     </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                </tbody>
-                </table>
+                    </thead>
+                    <tbody className={styles.tableBody}>
+                        {results['SAL'].map((row,rowIndex) => (
+                            <tr className={styles.outputTableRow}>
+                                <td className={styles.outputTableRowValue}>{row.AL}</td>
+                                <td className={styles.outputTableRowValue}>{row.LS}</td>
+                                <td className={styles.outputTableRowValue}>{row.SR}</td>
+                                <td className={styles.outputTableRowValue}>{row.ER}</td>
+                                <td className={styles.outputTableRowValue}>{row.FL}</td>
+                                <td className={styles.outputTableRowValue}>{row.FLC}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
-            <div className={styles.heading}>
-                Analysis of Fatigue Life for Single Axle Load
+        )}
+
+        
+        {results && (
+            <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
+                <div className={styles.heading}>
+                    Analysis of Fatigue Life for Single Axle Load
+                </div>
+                <div className={styles.tableContainer}>
+                    <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th className={styles.mainHeaderCol2}>Axle Loads (Tons)</th>
+                        <th className={styles.mainHeaderCol2}>Load Stress (kgcm<sup>-2</sup>)</th>
+                        <th className={styles.mainHeaderCol2}>Stress Ratio</th>
+                        <th className={styles.mainHeaderCol2}>Expected Repetations</th>
+                        <th className={styles.mainHeaderCol2}>Fatigue Life (N)</th>
+                        <th className={styles.mainHeaderCol2}>Fatigue Life Consumed</th>
+                    </tr>
+                    </thead>
+                    <tbody className={styles.tableBody}>
+                        {results['TAL'].map((row,rowIndex) => (
+                            <tr className={styles.outputTableRow}>
+                                <td className={styles.outputTableRowValue}>{row.AL}</td>
+                                <td className={styles.outputTableRowValue}>{row.LS}</td>
+                                <td className={styles.outputTableRowValue}>{row.SR}</td>
+                                <td className={styles.outputTableRowValue}>{row.ER}</td>
+                                <td className={styles.outputTableRowValue}>{row.FL}</td>
+                                <td className={styles.outputTableRowValue}>{row.FLC}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                    </table>
+                </div>
             </div>
-            <div className={styles.tableContainer}>
-                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
-                <thead className={styles.tableHeader}>
-                <tr className={styles.mainHeader}>
-                    <th className={styles.mainHeadersingleMLG}>Axle Loads (Tons)</th>
-                    <th className={styles.mainHeadersingleMLG}>Load Stress (kgcm<sup>-2</sup>)</th>
-                    <th className={styles.mainHeadersingleMLG}>Stress Ratio</th>
-                    <th className={styles.mainHeadersingleMLG}>Expected Repetations</th>
-                    <th className={styles.mainHeadersingleMLG}>Fatigue Life (N)</th>
-                    <th className={styles.mainHeadersingleMLG}>Fatigue Life Consumed</th>
-                </tr>
-                </thead>
-                <tbody className={styles.tableBody}>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-        </div>
-        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
-            <div className={styles.heading}>
-                Analysis of Fatigue Life for Tandem Axle Load
-            </div>
-            <div className={styles.tableContainer}>
-                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table}>
-                <thead className={styles.tableHeader}>
-                <tr className={styles.mainHeader}>
-                    <th className={styles.mainHeadersingleMLG}>Axle Loads (Tons)</th>
-                    <th className={styles.mainHeadersingleMLG}>Load Stress (kgcm<sup>-2</sup>)</th>
-                    <th className={styles.mainHeadersingleMLG}>Stress Ratio</th>
-                    <th className={styles.mainHeadersingleMLG}>Expected Repetations</th>
-                    <th className={styles.mainHeadersingleMLG}>Fatigue Life (N)</th>
-                    <th className={styles.mainHeadersingleMLG}>Fatigue Life Consumed</th>
-                </tr>
-                </thead>
-                <tbody className={styles.tableBody}>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                    <tr className={styles.outputTableRow}>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                        <td className={styles.outputTableRowValue}></td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
-        </div>
+        )}
+        
+
+
     </div>
   );
 };

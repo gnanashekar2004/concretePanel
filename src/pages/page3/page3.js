@@ -122,6 +122,76 @@ const Page3 = () => {
         }
     };
 
+    function flexStressRSA(M){
+        const A = ( parseFloat(section9Inputs.laneWidth) * parseFloat(section10Inputs.totalTraffic)**2)
+                   / ((parseFloat(section9Inputs.transverseJointSpacing)*(parseFloat(section10Results.cumCommAxles))**2));
+
+        const B = (parseFloat(M) * (parseFloat(section11Inputs.trailThickness))) / (parseFloat(section11Inputs.effModulusSubgrade)*parseFloat(section11Results.radiusStiff)**4);
+        const C = parseFloat(section11Inputs.maxDayTemp);
+
+        const effMod = parseFloat(section11Inputs.effModulusSubgrade);
+
+        if(section9Inputs.tiedConcreteShoulders === "yes"){
+            if(effMod <= 80){
+                return (0.008 - 6.12*A + 2.36*B + 0.0266*C);
+            }else if(effMod > 80 && effMod <= 150){
+                return (0.08 - 9.69*A + 2.09*B + 0.0409*C);
+            }else if(effMod > 150){
+                return (0.042 + 3.26*A + 1.62*B + 0.0522*C);
+            }
+        }else{
+            if(effMod <= 80){
+                return (-0.149 - 2.60*A + 3.13*B + 0.0297*C);
+            }else if(effMod > 80 && effMod <= 150){
+                return (-0.119 - 2.99*A + 2.78*B + 0.0456*C);
+            }else if(effMod > 150){
+                return (-0.238 + 7.02*A + 2.41*B + 0.0585*C);
+            }
+        }
+    };
+
+    function flexStressRTA(N){
+        const A = ( parseFloat(section9Inputs.laneWidth) * parseFloat(section10Inputs.totalTraffic)**2)
+                   / ((parseFloat(section9Inputs.transverseJointSpacing)*(parseFloat(section10Results.cumCommAxles))**2));
+
+        const B = (parseFloat(N) * (parseFloat(section11Inputs.trailThickness))) / (parseFloat(section11Inputs.effModulusSubgrade)*parseFloat(section11Results.radiusStiff)**4);
+        const C = parseFloat(section11Inputs.maxDayTemp);
+
+        const effMod = parseFloat(section11Inputs.effModulusSubgrade);
+
+        if(section9Inputs.tiedConcreteShoulders === "yes"){
+            if(effMod <= 80){
+                return (-0.188 + 0.93*A + 1.025*B + 0.0207*C);
+            }else if(effMod > 80 && effMod <= 150){
+                return (-0.174 + 1.21*A + 0.87*B + 0.0364*C);
+            }else if(effMod > 150){
+                return (-0.210 + 3.88*A + 0.73*B + 0.0506*C);
+            }
+        }else{
+            if(effMod <= 80){
+                return (-0.223 + 2.73*A + 1.335*B + 0.0229*C);
+            }else if(effMod > 80 && effMod <= 150){
+                return (-0.276 + 5.78*A + 1.14*B + 0.0404*C);
+            }else if(effMod > 150){
+                return (-0.3 + 9.88*A + 0.965*B + 0.0543*C);
+            }
+        }
+    };
+
+    function flexStressTDC(val, n){
+        const A = (parseFloat(section11Inputs.TDC)*parseFloat(section11Inputs.trailThickness)) / (parseFloat(section11Inputs.effModulusSubgrade)*parseFloat(section11Results.radiusStiff)**4);
+        const B = (parseFloat(section11Inputs.trailThickness)**2) / (parseFloat(section11Inputs.effModulusSubgrade)*parseFloat(section11Results.radiusStiff)**4);
+        const C = (parseFloat(section11Results.nightTemp));
+
+        if(n === 0){
+            return (-0.219 + 1.686*A*val + 168.48*B + 0.1089*C);
+        }else if( n === 1){
+            return (-0.219 + 1.686*(A/2)*val + 168.48*B + 0.1089*C);
+        }else if(n === 2){
+            return (-0.219 + 1.686*(A/3)*val + 168.48*B + 0.1089*C);
+        }
+    };
+
     function calculateAR(SR) {
         if (SR < 0.45) {
           return "infinite";
@@ -164,22 +234,15 @@ const Page3 = () => {
             const flexStrength = parseFloat(section11Inputs.flexuralStrength);
 
             const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-            const singleFS = calculateFlexStress(parseFloat(row.singleMLG),maxTemp);
+            const singleFS = flexStressRSA(parseFloat(row.singleMLG));
             const singleSR = singleFS/(flexStrength*1.1);
             const singleAR = calculateAR(singleSR);
             const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
             const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
-            const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
+            const tandemFS = flexStressRTA(parseFloat(row.tandemMLG));
             const tandemSR = tandemFS/(flexStrength*1.1);
             const tandemAR = calculateAR(tandemSR);
             const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
-            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
-            const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
-            const tridemSR = tridemFS/(flexStrength*1.1);
-            const tridemAR = calculateAR(tridemSR);
-            const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
-
-            {console.log(tridemFD);}
 
             return{
                 singleER: singleER.toFixed(4),
@@ -192,11 +255,6 @@ const Page3 = () => {
                 tandemSR: tandemSR.toFixed(4),
                 tandemAR: tandemAR,
                 tandemFD: tandemFD.toFixed(4),
-                tridemER: tridemER.toFixed(4),
-                tridemFS: tridemFS.toFixed(4),
-                tridemSR: tridemSR.toFixed(4),
-                tridemAR: tridemAR,
-                tridemFD: tridemFD.toFixed(4),
             }
             
         });
@@ -210,17 +268,17 @@ const Page3 = () => {
             const flexStrength = parseFloat(section11Inputs.flexuralStrength);
 
             const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-            const singleFS = calculateFlexStress(parseFloat(row.singleMLG),maxTemp);
+            const singleFS = flexStressTDC(parseFloat(row.singleMLG),0);
             const singleSR = singleFS/(flexStrength*1.1);
             const singleAR = calculateAR(singleSR);
             const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
             const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
-            const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
+            const tandemFS = flexStressTDC(parseFloat(row.tandemMLG),1);
             const tandemSR = tandemFS/(flexStrength*1.1);
             const tandemAR = calculateAR(tandemSR);
             const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
             const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
-            const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
+            const tridemFS = flexStressTDC(parseFloat(row.tridemMLG),2);
             const tridemSR = tridemFS/(flexStrength*1.1);
             const tridemAR = calculateAR(tridemSR);
             const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;

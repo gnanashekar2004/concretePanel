@@ -154,14 +154,8 @@ const Section12 = ({ signal, onSubmit, results }) => {
                     <tr className={styles.mainHeader}>
                         <th colSpan="5" className={styles.mainHeaderCol2}>Rear Single Axles</th>
                         <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tandem Axles</th>
-                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tridem Axles</th>
                     </tr>
                     <tr className={styles.subHeader}>
-                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
-                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
-                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
-                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
-                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
                         <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
                         <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
                         <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
@@ -187,11 +181,6 @@ const Section12 = ({ signal, onSubmit, results }) => {
                                 <td className={styles.outputTableRowValue}>{row.tandemSR}</td>
                                 <td className={styles.outputTableRowValue}>{row.tandemAR}</td>
                                 <td className={styles.outputTableRowValue}>{row.tandemFD}</td>
-                                <td className={styles.outputTableRowValue}>{row.tridemER}</td>
-                                <td className={styles.outputTableRowValue}>{row.tridemFS}</td>
-                                <td className={styles.outputTableRowValue}>{row.tridemSR}</td>
-                                <td className={styles.outputTableRowValue}>{row.tridemAR}</td>
-                                <td className={styles.outputTableRowValue}>{row.tridemFD}</td>
                             </tr>
                         ))}
                     </tbody>

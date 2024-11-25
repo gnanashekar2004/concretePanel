@@ -68,9 +68,31 @@ const Page1 = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setSignal(true);
+  };
 
-    const randomStatus = Math.floor(Math.random() * 2);
-    setSafeStatus(randomStatus === 1 ? 'Safe' : 'Unsafe');
+  const calculateColumnSums = (results) => {
+    // Columns to sum
+    const columns = ["singleFD", "tandemFD", "tridemFD"];
+  
+    // Initialize a total sum object for the columns
+    const totalSums = {
+      singleFD: 0,
+      tandemFD: 0,
+      tridemFD: 0,
+    };
+  
+    // Iterate over each table in the results
+    for (const tableKey in results) {
+      const table = results[tableKey]; // Access each table (array of rows)
+      table.forEach((row) => {
+        // Add the values of the specified columns
+        columns.forEach((col) => {
+          totalSums[col] += parseFloat(row[col]); // Ensure values are numbers
+        });
+      });
+    }
+  
+    return totalSums;
   };
 
  const handleSectionSubmit = () => {
@@ -350,6 +372,16 @@ const Page1 = () => {
       LBUC,
       LTDC
     });
+
+    const sr5 = {
+      TBUC: TBUC,
+      TTDC: TTDC,
+      LBUC: LBUC,
+      LTDC: LTDC
+    };
+
+    const totalSum = calculateColumnSums(sr5);
+    setSafeStatus(totalSum['singleFD'] + totalSum['tandemFD'] + totalSum['tridemFD'] < 1 ? 'Safe' : 'Unsafe');
   }; 
 
   useEffect(() => {

@@ -132,6 +132,25 @@ const Page3 = () => {
         }
       };      
       
+      const calculateColumnSums = (results) => {
+        const columns = ["singleFD", "tandemFD", "tridemFD"];
+        const totalSums = {
+          singleFD: 0,
+          tandemFD: 0,
+          tridemFD: 0,
+        };
+      
+        for (const tableKey in results) {
+          const table = results[tableKey];
+          table.forEach((row) => {
+            columns.forEach((col) => {
+              totalSums[col] += parseFloat(row[col]);
+            });
+          });
+        }
+      
+        return totalSums;
+      };
 
     const handleSection12Submit = (inputs) => {
         setSection12Inputs(inputs);
@@ -139,6 +158,8 @@ const Page3 = () => {
         const BUC = inputs.map(row => {
             const H = parseFloat(section10Results.axleRepetitionsBUC);
             const K2 = parseFloat(section10Inputs.rearAxlesProportion);
+            const K3 = parseFloat(section10Inputs.tandemAxlesProportion);
+            const K4 = parseFloat(section10Inputs.tridemAxlesProportion);
             const maxTemp = parseFloat(section11Inputs.maxDayTemp)
             const flexStrength = parseFloat(section11Inputs.flexuralStrength);
 
@@ -147,16 +168,18 @@ const Page3 = () => {
             const singleSR = singleFS/(flexStrength*1.1);
             const singleAR = calculateAR(singleSR);
             const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
-            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K2;
+            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
             const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
             const tandemSR = tandemFS/(flexStrength*1.1);
             const tandemAR = calculateAR(tandemSR);
             const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
-            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K2;
+            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
             const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
             const tridemSR = tridemFS/(flexStrength*1.1);
             const tridemAR = calculateAR(tridemSR);
             const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
+
+            {console.log(tridemFD);}
 
             return{
                 singleER: singleER.toFixed(4),
@@ -181,6 +204,8 @@ const Page3 = () => {
         const TDC = inputs.map(row => {
             const H = parseFloat(section10Results.axleRepetitionsTDC);
             const K2 = parseFloat(section10Inputs.rearAxlesProportion);
+            const K3 = parseFloat(section10Inputs.tandemAxlesProportion);
+            const K4 = parseFloat(section10Inputs.tridemAxlesProportion);
             const maxTemp = parseFloat(section11Results.nightTemp)
             const flexStrength = parseFloat(section11Inputs.flexuralStrength);
 
@@ -189,12 +214,12 @@ const Page3 = () => {
             const singleSR = singleFS/(flexStrength*1.1);
             const singleAR = calculateAR(singleSR);
             const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
-            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K2;
+            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
             const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
             const tandemSR = tandemFS/(flexStrength*1.1);
             const tandemAR = calculateAR(tandemSR);
             const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
-            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K2;
+            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
             const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
             const tridemSR = tridemFS/(flexStrength*1.1);
             const tridemAR = calculateAR(tridemSR);
@@ -224,14 +249,20 @@ const Page3 = () => {
             BUC,
             TDC
         });
+
+        const sr12 = {
+            BUC: BUC,
+            TDC: TDC
+        };
+
+        const totalSum = calculateColumnSums(sr12);
+        setSafeStatus(totalSum['singleFD'] + totalSum['tandemFD'] + totalSum['tridemFD'] < 1 ? 'Safe' : 'Unsafe');
+
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSignal(true);
-
-        const randomStatus = Math.floor(Math.random() * 2);
-        setSafeStatus(randomStatus === 1 ? 'Safe' : 'Unsafe');
     };
 
     useEffect(() => {

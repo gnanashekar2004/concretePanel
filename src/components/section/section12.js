@@ -32,6 +32,8 @@ const Section12 = ({ signal, onSubmit, results }) => {
     }
   },[signal,rows]);
 
+  console.log(results);
+
   return (
     <div className={styles.container}>
         <div className={styles.heading}>

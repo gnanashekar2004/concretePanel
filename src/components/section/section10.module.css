@@ -38,6 +38,12 @@
     padding-left: 1%;
 }
 
+.outputValues{
+    color: #C5C6D6;
+    font-size: 1em;
+    font-weight: 600;
+}
+
 .dropdown{
     width: 92%;
     height: 5.5vh;
@@ -48,4 +54,15 @@
     font-size: 1em;
     font-weight: 600;
     padding-left: 1%;
+}
+
+.hidden{
+    display: none;
+}
+
+.warning {
+    color: rgb(255, 0, 0);
+    font-size: 0.75em;
+    font-weight: 100;
+    text-align: center;
 }

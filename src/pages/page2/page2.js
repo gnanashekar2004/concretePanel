@@ -79,7 +79,7 @@ const Page2 = () => {
 
     const handleSection8Submit = (inputs) => {
         setSection8Inputs(inputs);
-        // console.log("Design Traffic:",section6Results.designTraffic);
+        
         const ER = inputs.map(row => ({
             singleAL: parseFloat(row.singleMLG).toFixed(4),
             singleER: ((parseFloat(row.singleFreq)/100)*parseFloat(section6Results.designTraffic)*0.15).toFixed(4),

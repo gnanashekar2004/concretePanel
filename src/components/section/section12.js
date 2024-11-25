@@ -1,30 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import styles from './section12.module.css';
 
-const Section12 = () => {
-  // Initial state for table rows with 5 rows of sub-columns
+const Section12 = ({ signal, onSubmit, results }) => {
   const initialRows = Array.from({ length: 5 }, () => ({
-    col1: '', col2: '', col3: '',
-    col4: '', col5: '', col6: '',
-    col7: '', col8: '', col9: ''
+    singleLG: '', singleMLG: '', singleFreq: '',
+    tandemLG: '', tandemMLG: '', tandemFreq: '',
+    tridemLG: '', tridemMLG: '', tridemFreq: ''
   }));
   
   const [rows, setRows] = useState(initialRows);
 
-  // Handle adding a new row
   const handleAddRow = () => {
-    const newRow = { col1: '', col2: '', col3: '', col4: '', col5: '', col6: '', col7: '', col8: '', col9: '' };
+    const newRow = { singleLG: '', singleMLG: '', singleFreq: '', tandemLG: '', tandemMLG: '', tandemFreq: '', tridemLG: '', tridemMLG: '', tridemFreq: '' };
     setRows([...rows, newRow]);
   };
 
-  // Handle updating cell data
   const handleChange = (index, field, value) => {
     const updatedRows = rows.map((row, rowIndex) =>
       rowIndex === index ? { ...row, [field]: value } : row
     );
     setRows(updatedRows);
   };
+
+  useEffect(() => {
+    if(signal){
+        const nonNullRows = rows.filter(row => 
+            Object.values(row).every(value => value !== null && value.trim() !== '')
+        );
+        onSubmit(nonNullRows);
+    }
+  },[signal,rows]);
 
   return (
     <div className={styles.container}>
@@ -57,72 +63,72 @@ const Section12 = () => {
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col1}
-                        onChange={(e) => handleChange(index, 'col1', e.target.value)}
+                        value={row.singleLG}
+                        onChange={(e) => handleChange(index, 'singleLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col2}
-                        onChange={(e) => handleChange(index, 'col2', e.target.value)}
+                        value={row.singleMLG}
+                        onChange={(e) => handleChange(index, 'singleMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col3}
-                        onChange={(e) => handleChange(index, 'col3', e.target.value)}
+                        value={row.singleFreq}
+                        onChange={(e) => handleChange(index, 'singleFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col4}
-                        onChange={(e) => handleChange(index, 'col4', e.target.value)}
+                        value={row.tandemLG}
+                        onChange={(e) => handleChange(index, 'tandemLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col5}
-                        onChange={(e) => handleChange(index, 'col5', e.target.value)}
+                        value={row.tandemMLG}
+                        onChange={(e) => handleChange(index, 'tandemMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col6}
-                        onChange={(e) => handleChange(index, 'col6', e.target.value)}
+                        value={row.tandemFreq}
+                        onChange={(e) => handleChange(index, 'tandemFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col7}
-                        onChange={(e) => handleChange(index, 'col7', e.target.value)}
+                        value={row.tridemLG}
+                        onChange={(e) => handleChange(index, 'tridemLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col8}
-                        onChange={(e) => handleChange(index, 'col8', e.target.value)}
+                        value={row.tridemMLG}
+                        onChange={(e) => handleChange(index, 'tridemMLG', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
                     <td className={styles.tableRowValue}>
                         <input
                         type="text"
-                        value={row.col9}
-                        onChange={(e) => handleChange(index, 'col9', e.target.value)}
+                        value={row.tridemFreq}
+                        onChange={(e) => handleChange(index, 'tridemFreq', e.target.value)}
                         className={`${styles.inputs} ${index % 2 === 0 ? styles.evenClass : styles.oddClass}`}
                         />
                     </td>
@@ -135,8 +141,8 @@ const Section12 = () => {
             </div>
         </div>
 
-        {/* {results && ( ${!signal ? styles.hidden : ""} */}
-        <div className={`${styles.outputTables} `}>
+        {results && (
+        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
                 <div className={styles.heading2}>
                     Bottom-Up Cracking Fatigue Damage Analysis for 6 hour Day time traffic and Positive Temperature Differential
                 </div>
@@ -166,13 +172,34 @@ const Section12 = () => {
                         <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
                     </tr>
                     </thead>
+                    <tbody className={styles.tableBody}>
+                        {results['BUC'].map((row,rowIndex) => (
+                            <tr className={styles.outputTableRow}>
+                                <td className={styles.outputTableRowValue}>{row.singleER}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleFD}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemER}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemFD}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemER}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemFD}</td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
                 </div>
             </div>
-        {/* )} */}
+        )}
 
-        {/* {results && ( ${!signal ? styles.hidden : ""} */}
-        <div className={`${styles.outputTables} `}>
+        {results && (
+        <div className={`${styles.outputTables} ${!signal ? styles.hidden : ""}`}>
                 <div className={styles.heading2}>
                     Top-Down Cracking Fatigue Damage Analysis for 6 hour Night time traffic and Negative Temperature Differential
                 </div>
@@ -202,10 +229,31 @@ const Section12 = () => {
                         <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
                     </tr>
                     </thead>
+                    <tbody className={styles.tableBody}>
+                        {results['TDC'].map((row,rowIndex) => (
+                            <tr className={styles.outputTableRow}>
+                                <td className={styles.outputTableRowValue}>{row.singleER}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.singleFD}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemER}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tandemFD}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemER}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemFS}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemSR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemAR}</td>
+                                <td className={styles.outputTableRowValue}>{row.tridemFD}</td>
+                            </tr>
+                        ))}
+                    </tbody>
                 </table>
                 </div>
             </div>
-        {/* )} */}
+        )}
     </div>
   );
 };

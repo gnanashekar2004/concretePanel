@@ -6,10 +6,10 @@ import styles from './section9.module.css';
 const Section9 = ({ signal, onSubmit }) => {
     const [inputs, setInputs] = useState({
         carriageaway: 4,
-        tiedConcreteShoulders: true,
+        tiedConcreteShoulders: 'yes',
         transverseJointSpacing: 4.5,
         laneWidth: 3.5,
-        transverseDowelBars:true
+        transverseDowelBars:'yes'
     });
 
     useEffect(() => {
@@ -42,8 +42,8 @@ const Section9 = ({ signal, onSubmit }) => {
                         })
                     }
                 >
-                <option value="true">YES</option>
-                <option value="false">NO</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
                 </select>
             </Grid>
             <Grid className={styles.grids} size={{xs:12, md:6}}>
@@ -67,8 +67,8 @@ const Section9 = ({ signal, onSubmit }) => {
                         })
                     }
                 >
-                <option value="true">YES</option>
-                <option value="false">NO</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
                 </select>
             </Grid>
         </Grid>

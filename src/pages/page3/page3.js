@@ -66,10 +66,165 @@ const Page3 = () => {
         });
     };
 
-    const handleSection12Submit = (inputs) => {
-        setSection12Inputs(inputs);
+    function calculateFlexStress(MLG, maxTemp) {
+    const tiedConcreteShoulders = section9Inputs.tiedConcreteShoulders;
+    const effModSubgrade = parseFloat(section11Inputs.effModulusSubgrade);
+    const unitWeight = parseFloat(section11Inputs.unitWeight);
+    const trailThickness = parseFloat(section11Inputs.trailThickness);
+    const radiusStiff = parseFloat(section11Results.radiusStiff);
+
+    if (tiedConcreteShoulders === "yes") {
+        if (effModSubgrade <= 80) {
+            return (
+                0.008 -
+                (6.12 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (2.36 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0266 * maxTemp
+            );
+            } else if (effModSubgrade > 80 && effModSubgrade <= 150) {
+            return (
+                0.08 -
+                (9.69 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (2.09 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0409 * maxTemp
+            );
+            } else {
+            return (
+                0.042 +
+                (3.26 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (1.62 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0522 * maxTemp
+            );
+            }
+        } else {
+            if (effModSubgrade <= 80) {
+            return (
+                -0.149 -
+                (2.6 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (3.13 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0297 * maxTemp
+            );
+            } else if (effModSubgrade > 80 && effModSubgrade <= 150) {
+            return (
+                -0.119 -
+                (2.99 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (2.78 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0456 * maxTemp
+            );
+            } else {
+            return (
+                -0.238 +
+                (7.02 * unitWeight * trailThickness * trailThickness) / (effModSubgrade * radiusStiff * radiusStiff) +
+                (2.41 * MLG * trailThickness) / (effModSubgrade * Math.pow(radiusStiff, 4)) +
+                0.0585 * maxTemp
+            );
+            }
+        }
     };
 
+    function calculateAR(SR) {
+        if (SR < 0.45) {
+          return "infinite";
+        } else if (SR >= 0.45 && SR <= 0.55) {
+          return (Math.pow(4.2577 / (SR - 0.4325), 3.268)).toFixed(4);
+        } else {
+          return (Math.pow(10, (0.9718 - SR) / 0.0828)).toFixed(4);
+        }
+      };      
+      
+
+    const handleSection12Submit = (inputs) => {
+        setSection12Inputs(inputs);
+
+        const BUC = inputs.map(row => {
+            const H = parseFloat(section10Results.axleRepetitionsBUC);
+            const K2 = parseFloat(section10Inputs.rearAxlesProportion);
+            const maxTemp = parseFloat(section11Inputs.maxDayTemp)
+            const flexStrength = parseFloat(section11Inputs.flexuralStrength);
+
+            const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
+            const singleFS = calculateFlexStress(parseFloat(row.singleMLG),maxTemp);
+            const singleSR = singleFS/(flexStrength*1.1);
+            const singleAR = calculateAR(singleSR);
+            const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
+            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K2;
+            const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
+            const tandemSR = tandemFS/(flexStrength*1.1);
+            const tandemAR = calculateAR(tandemSR);
+            const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
+            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K2;
+            const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
+            const tridemSR = tridemFS/(flexStrength*1.1);
+            const tridemAR = calculateAR(tridemSR);
+            const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
+
+            return{
+                singleER: singleER.toFixed(4),
+                singleFS: singleFS.toFixed(4),
+                singleSR: singleSR.toFixed(4),
+                singleAR: singleAR,
+                singleFD: singleFD.toFixed(4),
+                tandemER: tandemER.toFixed(4),
+                tandemFS: tandemFS.toFixed(4),
+                tandemSR: tandemSR.toFixed(4),
+                tandemAR: tandemAR,
+                tandemFD: tandemFD.toFixed(4),
+                tridemER: tridemER.toFixed(4),
+                tridemFS: tridemFS.toFixed(4),
+                tridemSR: tridemSR.toFixed(4),
+                tridemAR: tridemAR,
+                tridemFD: tridemFD.toFixed(4),
+            }
+            
+        });
+
+        const TDC = inputs.map(row => {
+            const H = parseFloat(section10Results.axleRepetitionsTDC);
+            const K2 = parseFloat(section10Inputs.rearAxlesProportion);
+            const maxTemp = parseFloat(section11Results.nightTemp)
+            const flexStrength = parseFloat(section11Inputs.flexuralStrength);
+
+            const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
+            const singleFS = calculateFlexStress(parseFloat(row.singleMLG),maxTemp);
+            const singleSR = singleFS/(flexStrength*1.1);
+            const singleAR = calculateAR(singleSR);
+            const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
+            const tandemER = (parseFloat(row.tandemFreq)/100)*H*K2;
+            const tandemFS = calculateFlexStress(parseFloat(row.tandemMLG),maxTemp);
+            const tandemSR = tandemFS/(flexStrength*1.1);
+            const tandemAR = calculateAR(tandemSR);
+            const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
+            const tridemER = (parseFloat(row.tridemFreq)/100)*H*K2;
+            const tridemFS = calculateFlexStress(parseFloat(row.tridemMLG),maxTemp);
+            const tridemSR = tridemFS/(flexStrength*1.1);
+            const tridemAR = calculateAR(tridemSR);
+            const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
+
+            return{
+                singleER: singleER.toFixed(4),
+                singleFS: singleFS.toFixed(4),
+                singleSR: singleSR.toFixed(4),
+                singleAR: singleAR,
+                singleFD: singleFD.toFixed(4),
+                tandemER: tandemER.toFixed(4),
+                tandemFS: tandemFS.toFixed(4),
+                tandemSR: tandemSR.toFixed(4),
+                tandemAR: tandemAR,
+                tandemFD: tandemFD.toFixed(4),
+                tridemER: tridemER.toFixed(4),
+                tridemFS: tridemFS.toFixed(4),
+                tridemSR: tridemSR.toFixed(4),
+                tridemAR: tridemAR,
+                tridemFD: tridemFD.toFixed(4),
+            }
+            
+        });
+
+        setSection12Results({
+            BUC,
+            TDC
+        });
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -78,6 +233,13 @@ const Page3 = () => {
         const randomStatus = Math.floor(Math.random() * 2);
         setSafeStatus(randomStatus === 1 ? 'Safe' : 'Unsafe');
     };
+
+    useEffect(() => {
+        if (signal && section9Inputs && section10Results && section11Results) {
+            handleSection12Submit(section12Inputs);
+        }
+    }, [signal, section9Inputs, section10Inputs, section11Inputs, section12Inputs]);
+
 
     return(
         <div className={styles.container}>
@@ -98,7 +260,7 @@ const Page3 = () => {
                 />
                 <Section12
                     signal = {signal}
-                    onSubmit = {handleSection12Submit}
+                    onSubmit = {setSection12Inputs}
                     results = {section12Results}
                 />
                 <div className={styles.submit}>

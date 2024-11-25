@@ -3,31 +3,38 @@
     color:white;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 4vh 3vw;
-    width: 100vw;
 }
 
 .heading{
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 800;
     padding-bottom: 2vh;
+    text-align: center;
 }
 
 .heading2{
-    color: #f9f9f9;
-    padding-top: 5vh;
-    font-size: 2em;
+    font-size: 1.5em;
+    font-weight: 500;
+    padding-bottom: 2vh;
     text-align: center;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: 700;
 }
 
 .tableContainer{
-    width:100%;
+    padding-top:1vh;
+}
+
+.tableContainer2{
     padding-top:1vh;
 }
 
 .table{
     width: 90vw;
+    padding:0;
+    margin:0;
+}
+
+.table2{
+    width: 92vw;
     padding:0;
     margin:0;
 }
@@ -40,6 +47,25 @@
 .tableBody,.tableRow,.tableRowValue,.inputs{
     padding:0;
     margin:0;
+}
+
+.outputTableRow{
+    height:5vh;
+}
+
+.outputTableRowValue{
+    text-align: center;
+    color: #C5C6D6;
+}
+
+.mainHeaderCol2{
+    background-color:  rgb(50, 128, 254);
+    font-size: 1em;
+}
+
+.subHeaderCol2{
+    background-color:  rgb(0, 98, 255);
+    font-size:0.75em;
 }
 
 .mainHeaderCol{
@@ -67,6 +93,7 @@
     color: #C5C6D6;
     font-size: 1em;
     font-weight: 600;
+    text-align: center;
     /* padding-left: 1%; */
 }
 
@@ -79,7 +106,7 @@
 }
 
 .buttonContainer{
-    width: 90%;
+    width: 98%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,3 +126,10 @@
     cursor: pointer;
 }
 
+.outputTables{
+    margin-top:5vh;
+}
+
+.hidden {
+    display: none;
+}

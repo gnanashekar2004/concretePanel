@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import styles from './section5.module.css';
 
-const Section5 = () => {
+const Section5 = ({ signal, onSubmit, results }) => {
   // Initial state for table rows with 5 rows of sub-columns
   const initialRows = Array.from({ length: 5 }, () => ({
     col1: '', col2: '', col3: '',
@@ -134,6 +134,150 @@ const Section5 = () => {
             <button type="button" onClick={handleAddRow} className={styles.button}>Add Row</button>
             </div>
         </div>
+
+        {/* {results && ( ${!signal ? styles.hidden : ""} */}
+            <div className={`${styles.outputTables} `}>
+                <div className={styles.heading2}>
+                    Bottom-Up Transverse Cracking Fatigue Damage Analysis for 6 hour Day time traffic and Positive Temperature Differential
+                </div>
+                <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table2}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Single Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tandem Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tridem Axles</th>
+                    </tr>
+                    <tr className={styles.subHeader}>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                    </tr>
+                    </thead>
+                </table>
+                </div>
+            </div>
+        {/* )} */}
+
+        {/* {results && ( ${!signal ? styles.hidden : ""} */}
+        <div className={`${styles.outputTables} `}>
+                <div className={styles.heading2}>
+                    Top-Down Transverse Cracking Fatigue Damage Analysis for 6 hour Night time traffic and Negative Temperature Differential
+                </div>
+                <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table2}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Single Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tandem Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tridem Axles</th>
+                    </tr>
+                    <tr className={styles.subHeader}>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                    </tr>
+                    </thead>
+                </table>
+                </div>
+            </div>
+        {/* )} */}
+
+        {/* {results && ( ${!signal ? styles.hidden : ""} */}
+        <div className={`${styles.outputTables} `}>
+                <div className={styles.heading2}>
+                    Bottom-Up Longitudinal Cracking Fatigue Damage Analysis for 6 hour Day time traffic and Positive Temperature Differential
+                </div>
+                <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table2}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Single Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tandem Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tridem Axles</th>
+                    </tr>
+                    <tr className={styles.subHeader}>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                    </tr>
+                    </thead>
+                </table>
+                </div>
+            </div>
+        {/* )} */}
+
+        {/* {results && ( ${!signal ? styles.hidden : ""} */}
+        <div className={`${styles.outputTables} `}>
+                <div className={styles.heading2}>
+                    Top-Down Longitudinal Cracking Fatigue Damage Analysis for 6 hour Night time traffic and Negative Temperature Differential
+                </div>
+                <div className={styles.tableContainer}>
+                <table border="1" cellPadding="10" cellSpacing="0" className={styles.table2}>
+                    <thead className={styles.tableHeader}>
+                    <tr className={styles.mainHeader}>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Single Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tandem Axles</th>
+                        <th colSpan="5" className={styles.mainHeaderCol2}>Rear Tridem Axles</th>
+                    </tr>
+                    <tr className={styles.subHeader}>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                        <th className={styles.subHeaderCol2}>Expected Repetations (ni)</th>
+                        <th className={styles.subHeaderCol2}>Flex Stress (Mpa)</th>
+                        <th className={styles.subHeaderCol2}>Stress Ratio (SR)</th>
+                        <th className={styles.subHeaderCol2}>Allowable Repetations (Ni)</th>
+                        <th className={styles.subHeaderCol2}>Fatigue Damage (ni/Ni)</th>
+                    </tr>
+                    </thead>
+                </table>
+                </div>
+            </div>
+        {/* )} */}
     </div>
   );
 };

@@ -95,6 +95,127 @@ const Page1 = () => {
     return totalSums;
   };
 
+  function calcuFSPTRSA(k,A,B,C,D,val) {
+    if(k<100){
+      return (1.1656 + 0.0038*A + 1.9519*B*val + 0.0029*A*B*val - 0.661*C - 0.8231*D);
+    }else if(k>=100 && k<150){
+      return (1.4612 + 0.0064*A + 1.8305*B*val + 0.0045*A*B*val - 0.7314*C - 0.8447*D);
+    }else if(k>=150){
+      return (1.7082 + 0.0111*A + 1.6754*val*B + 0.0068*A*B*val - 0.7862*C - 1.0714*D);
+    }
+  };
+
+  function calcuFSPTRTA(k,A,B,C,D,val) {
+    if(k<100){
+      return (0.6966 + 0.0038*A + 0.8587*B*val + 0.0014*A*B*val - 0.4231*C - 0.9803*D);
+    }else if(k>=100 && k<150){
+      return (0.8047 + 0.0064*A + 0.8179*B*val + 0.0022*A*B*val - 0.4407*C - 1.0468*D);
+    }else if(k>=150){
+      return (0.8833 + 0.0112*A + 0.7623*B*val + 0.0034*A*B*val - 0.4531*C - 1.2445*D);
+    }
+  };
+
+  function calcuFSPTRTR(k,A,B,C,D,val) {
+    if(k<100){
+      return (0.6966 + 0.0038*A + 0.5725*B*val + 0.0009*A*B*val - 0.4231*C - 0.9803*D);
+    }else if(k>=100 && k<150){
+      return (0.8047 + 0.0064*A + 0.5453*B*val + 0.0015*A*B*val - 0.4407*C - 1.0468*D);
+    }else if(k>=150){
+      return (0.8833 + 0.0112*A + 0.5082*B*val + 0.0023*A*B*val - 0.4531*C - 1.2445*D);
+    }
+  };
+
+  function calcuFSNTRSA(k,A,B,C,D,val){
+    if(k<100){
+      return (0.18 + 0.0034*A + 1.1902*B*val + 0.0023*A*B*val + 0.1248*C + 2.0352*D);
+    }else if(k>=100 && k<150){
+      return (0.1982 + 0.0055*A + 1.0942*B*val + 0.0037*A*B*val + 0.214*C + 2.3753*D);
+    }else if(k>=150){
+      return (0.1618 + 0.0095*A + 0.9791*B*val + 0.0057*A*B*val + 0.3181*C + 2.6111*D);
+    }
+  };
+
+  function calcuFSNTRTA(k,A,B,C,D,val){
+    if(k<100){
+      return (-0.8392 + 0.004*A + 0.7267*B*val + 0.0014*A*B*val + 0.5464*C + 0.6092*D);
+    }else if(k>=100 && k<150){
+      return (-1.0445 + 0.0065*A + 0.7233*B*val + 0.0022*A*B*val + 0.6773*C + 1.1264*D);
+    }else if(k>=150){
+      return (-1.1096 + 0.0113*A + 0.6998*B*val + 0.0034*A*B*val + 0.8063*C + 2.0525*D);
+    }
+  };
+
+  function calcuFSNTRTR(k,A,B,C,D,val){
+    if(k<100){
+      return (-0.7533 + 0.004*A + 0.4852*B*val + 0.0009*A*B*val + 0.5191*C + 0.8102*D);
+    }else if(k>=100 && k<150){
+      return (-0.9831 + 0.0066*A + 0.4801*B*val + 0.0015*A*B*val + 0.6703*C + 1.3327*D);
+    }else if(k>=150){
+      return (-1.0893 + 0.0114*A + 0.4628*B*val + 0.0023*A*B*val + 0.8179*C + 2.2176*D);
+    }
+  };
+
+  function calcuFSPLRSA(k,A,B,C,D,val){
+    if(k<100){
+      return (0.5304 + 0.0035*A + 1.331*B*val + 0.0029*A*B*val - 0.2363*C + 0.0826*D);
+    }else if(k>=100 && k<150){
+      return (0.6275 + 0.006*A + 1.2393*B*val + 0.0045*A*B*val - 0.2325*C + 0.0749*D);
+    }else if(k>=150){
+      return (0.6871 + 0.0107*A + 1.211*B*val + 0.0067*A*B*val - 0.2261*C - 0.0925*D);
+    }
+  };
+
+  function calcuFSPLRTA(k,A,B,C,D,val){
+    if(k<100){
+      return (0.7386 + 0.0037*A + 0.7592*B*val + 0.0014*A*B*val - 0.2972*C + 0.6216*D);
+    }else if(k>=100 && k<150){
+      return (0.8973 + 0.0061*A + 0.6986*B*val + 0.0022*A*B*val - 0.2772*C + 0.8194*D);
+    }else if(k>=150){
+      return (1.0415 + 0.0107*A + 0.6224*B*val + 0.0034*A*B*val - 0.2618*C + 0.8249*D);
+    }
+  };
+
+  function calcuFSPLRTR(k,A,B,C,D,val){
+    if(k<100){
+      return (0.7209 + 0.0037*A + 0.5073*B*val + 0.0009*A*B*val - 0.3025*C + 0.4686*D);
+    }else if(k>=100 && k<150){
+      return (0.9042 + 0.0062*A + 0.468*B*val + 0.0015*A*B*val - 0.2983*C + 0.6623*D);
+    }else if(k>=150){
+      return (1.0667 + 0.0107*A + 0.4178*B*val + 0.0023*A*B*val - 0.2908*C + 0.6833*D);
+    }
+  };
+
+  function calcuFSNLRSA(k,A,B,C,D,val){
+    if(k<100){
+      return (0.5719 + 0.0041*A + 1.0307*B*val + 0.0028*A*B*val - 0.2387*C + 0.3526*D);
+    }else if(k>=100 && k<150){
+      return (0.7755 + 0.0066*A + 0.9344*B*val +0.0045*A*B*val - 0.2777*C + 0.3684*D);
+    }else if(k>=150){
+      return (0.9679 + 0.0113*A + 0.8099*B*val + 0.0068*A*B*val - 0.3179*C + 0.2219*D);
+    }
+  };
+
+  function calcuFSNLRTA(k,A,B,C,D,val){
+    if(k<100){
+      return (1.0354 + 0.004*A + 0.667*B*val + 0.0014*A*B*val - 0.3871*C + 1.4088*D);
+    }else if(k>=100 && k<150){
+      return (1.3821 + 0.0067*A + 0.5911*B*val + 0.0022*A*B*val - 0.4225*C + 1.6572*D);
+    }else if(k>=150){
+      return (1.704 + 0.0114*A + 0.4987*B*val + 0.0034*A*B*val - 0.4597*C + 1.6134*D);
+    }
+  };
+
+  function calcuFSNLRTR(k,A,B,C,D,val){
+    if(k<100){
+      return (1.0948 + 0.0038*A + 0.4559*B*val + 0.001*A*B*val - 0.4336*C + 1.2613*D);
+    }else if(k>=100 && k<150){
+      return (1.488 + 0.0065*A + 0.4043*B*val + 0.0015*A*B*val - 0.497*C + 1.4431*D);
+    }else if(k>=150){
+      return (1.8576 + 0.0113*A + 0.3411*B*val + 0.0023*A*B*val - 0.5508*C + 1.4116*D);
+    }
+  };
+  
+
  const handleSectionSubmit = () => {
     const { carriageaway } = section1Inputs;
     const {
@@ -186,6 +307,14 @@ const Page1 = () => {
       radiusStiff: radiusStiff.toFixed(4)
     };
 
+    const k = parseFloat(section4Inputs.effectiveModulus);
+    const A = parseFloat(section4Inputs.maxTemperatureDifferential);
+    const B = parseFloat(section4Inputs.trialThickness)/(parseFloat(section4Inputs.effectiveModulus)*parseFloat(sr4.radiusStiff)**4);
+    const C = Math.log10(parseFloat(section4Inputs.effectiveModulus));
+    const D = Math.log10(parseFloat(sr4.radiusStiff));
+
+    
+
     const TBUC = section5Inputs.map(row => {
       const H = parseFloat(sr2.TaxleRepetitionsBUC);
       const K2 = parseFloat(section2Inputs.rearAxlesProportion);
@@ -196,17 +325,17 @@ const Page1 = () => {
       const radiusSt = parseFloat(sr4.radiusStiff);
 
       const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-      const singleFS = calculateFlexStress(radiusSt,parseFloat(row.singleMLG),maxTemp);
+      const singleFS = calcuFSPTRSA(k,A,B,C,D,parseFloat(row.singleMLG));
       const singleSR = singleFS/(flexStrength*1.1);
       const singleAR = calculateAR(singleSR);
       const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
       const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3*2;
-      const tandemFS = calculateFlexStress(radiusSt,parseFloat(row.tandemMLG),maxTemp);
+      const tandemFS = calcuFSPTRTA(k,A,B,C,D,parseFloat(row.tandemMLG));
       const tandemSR = tandemFS/(flexStrength*1.1);
       const tandemAR = calculateAR(tandemSR);
       const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
       const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4*2;
-      const tridemFS = calculateFlexStress(radiusSt,parseFloat(row.tridemMLG),maxTemp);
+      const tridemFS = calcuFSPTRTR(k,A,B,C,D,parseFloat(row.tridemMLG));
       const tridemSR = tridemFS/(flexStrength*1.1);
       const tridemAR = calculateAR(tridemSR);
       const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
@@ -241,17 +370,17 @@ const Page1 = () => {
       const radiusSt = parseFloat(sr4.radiusStiff);
 
       const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-      const singleFS = calculateFlexStress(radiusSt,parseFloat(row.singleMLG),maxTemp);
+      const singleFS = calcuFSNTRSA(k,A,B,C,D,parseFloat(row.singleMLG));
       const singleSR = singleFS/(flexStrength*1.1);
       const singleAR = calculateAR(singleSR);
       const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
       const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
-      const tandemFS = calculateFlexStress(radiusSt,parseFloat(row.tandemMLG),maxTemp);
+      const tandemFS = calcuFSNTRTA(k,A,B,C,D,parseFloat(row.tandemMLG));
       const tandemSR = tandemFS/(flexStrength*1.1);
       const tandemAR = calculateAR(tandemSR);
       const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
       const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
-      const tridemFS = calculateFlexStress(radiusSt,parseFloat(row.tridemMLG),maxTemp);
+      const tridemFS = calcuFSNTRTR(k,A,B,C,D,parseFloat(row.tridemMLG));
       const tridemSR = tridemFS/(flexStrength*1.1);
       const tridemAR = calculateAR(tridemSR);
       const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
@@ -286,17 +415,17 @@ const Page1 = () => {
       const radiusSt = parseFloat(sr4.radiusStiff);
 
       const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-      const singleFS = calculateFlexStress(radiusSt,parseFloat(row.singleMLG),maxTemp);
+      const singleFS = calcuFSPLRSA(k,A,B,C,D,parseFloat(row.singleMLG));
       const singleSR = singleFS/(flexStrength*1.1);
       const singleAR = calculateAR(singleSR);
       const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
       const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
-      const tandemFS = calculateFlexStress(radiusSt,parseFloat(row.tandemMLG),maxTemp);
+      const tandemFS = calcuFSPLRTA(k,A,B,C,D,parseFloat(row.tandemMLG));
       const tandemSR = tandemFS/(flexStrength*1.1);
       const tandemAR = calculateAR(tandemSR);
       const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
       const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
-      const tridemFS = calculateFlexStress(radiusSt,parseFloat(row.tridemMLG),maxTemp);
+      const tridemFS = calcuFSPLRTR(k,A,B,C,D,parseFloat(row.tridemMLG));
       const tridemSR = tridemFS/(flexStrength*1.1);
       const tridemAR = calculateAR(tridemSR);
       const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;
@@ -331,17 +460,17 @@ const Page1 = () => {
       const radiusSt = parseFloat(sr4.radiusStiff);
 
       const singleER = (parseFloat(row.singleFreq)/100)*H*K2;
-      const singleFS = calculateFlexStress(radiusSt,parseFloat(row.singleMLG),maxTemp);
+      const singleFS = calcuFSNLRSA(k,A,B,C,D,parseFloat(row.singleMLG));
       const singleSR = singleFS/(flexStrength*1.1);
       const singleAR = calculateAR(singleSR);
       const singleFD = singleAR === "infinite" ? 0 : singleER/singleAR;
       const tandemER = (parseFloat(row.tandemFreq)/100)*H*K3;
-      const tandemFS = calculateFlexStress(radiusSt,parseFloat(row.tandemMLG),maxTemp);
+      const tandemFS = calcuFSNLRTA(k,A,B,C,D,parseFloat(row.tandemMLG));
       const tandemSR = tandemFS/(flexStrength*1.1);
       const tandemAR = calculateAR(tandemSR);
       const tandemFD = tandemAR === "infinite" ? 0 : tandemER/tandemAR;
       const tridemER = (parseFloat(row.tridemFreq)/100)*H*K4;
-      const tridemFS = calculateFlexStress(radiusSt,parseFloat(row.tridemMLG),maxTemp);
+      const tridemFS = calcuFSNLRTR(k,A,B,C,D,parseFloat(row.tridemMLG));
       const tridemSR = tridemFS/(flexStrength*1.1);
       const tridemAR = calculateAR(tridemSR);
       const tridemFD = tridemAR === "infinite" ? 0 : tridemER/tridemAR;

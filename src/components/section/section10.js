@@ -103,7 +103,7 @@ const Section10 = ({ signal, onSubmit, results }) => {
             </div>
             {warning && (
                 <div className={styles.warning}>
-                    The sum of K1, K2, K3, and K4 must equal 1.
+                    The sum of K1, K2, K3, and K4 must be equal to 1.
                 </div>
             )}
 

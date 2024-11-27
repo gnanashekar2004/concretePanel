@@ -10,7 +10,11 @@ const Footer=()=>{
                 <div className={styles.logo}>
                     <img src={Logo} alt="Logo"/>
                 </div>
-                <div className={styles.dept}>Department of Civil Engineering</div>
+                <div 
+                    className={styles.dept}
+                    onClick={() => window.open('https://www.iitkgp.ac.in/department/CE', '_blank')}
+                    style={{ cursor: 'pointer' }}
+                >Department of Civil Engineering</div>
                 <div className={styles.kgp}>Indian Institute of Technology, Kharagpur</div>
             </div>
             <div className={styles.details}>

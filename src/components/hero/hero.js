@@ -8,8 +8,8 @@ const Hero = () =>{
         <div className={styles.hero}>
             <img className={styles.images} src={background} alt="report analysis background"/>
             <div className={styles.overlay}>
-                <p className={styles.heading}>Concrete Panel Safety</p>
-                <p className={styles.desc}>A concrete panel safety check ensures that concrete panels used in construction are structurally sound, securely anchored, and able to bear expected loads without failure. This inspection assesses the panels for cracks, defects, and proper installation, while also confirming fire resistance and compliance with building standards. These checks are essential for preventing accidents and ensuring the durability and safety of the construction.</p>
+                <p className={styles.heading}>Concrete Thickness Evaluation for Rigid Pavements</p>
+                <p className={styles.desc}>This website evaluates the safety of the assumed concrete thickness using the appropriate design procedure, including Short Slab Concrete Pavement (SSCP), Jointed Plain Concrete Pavement (JPCP), or Thin White Topping (TWT), ensuring reliable and efficient pavement performance.</p>
             </div>
         </div>
     );
